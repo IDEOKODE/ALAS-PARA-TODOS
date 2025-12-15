@@ -1,0 +1,2449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALAS PARA TODOS® | Vive la experiencia de volar.</title>
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+
+
+  <style>
+    :root {
+      --negro: #000000;
+      --naranja: #FF7C1D;
+      --blanco: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--blanco);
+      color: var(--negro);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 3px solid var(--naranja);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+    }
+
+    .logo img {
+      height: 46px;
+    }
+
+    .logo span {
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    .logo span::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 40%;
+      height: 2px;
+      background: var(--naranja);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    .btn-nav {
+      padding: 0.45rem 1.4rem;
+      border-radius: 30px;
+      border: 1px solid var(--naranja);
+      color: var(--naranja);
+      font-weight: 600;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.9rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: var(--blanco);
+        flex-direction: column;
+        padding: 1.8rem 0;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 1rem 3rem;
+      background: linear-gradient(
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0.35)
+      ), url('img/p_fondo.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    /* BADGES */
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.6rem;
+      
+    }
+
+    .hero-badge {
+      background: rgba(255,255,255,0.95);
+      color: var(--negro);
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      white-space: nowrap;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      color: var(--blanco);
+      text-shadow: 0 6px 25px rgba(0,0,0,0.6);
+    }
+
+    .hero h1 span {
+      color: var(--naranja);
+    }
+
+    .hero p {
+      color: var(--blanco);
+      margin: 1.5rem auto 2.2rem;
+      max-width: 720px;
+      background: rgba(0,0,0,0.35);
+      padding: 0.9rem 1.2rem;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--naranja);
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      font-weight: 700;
+      color: var(--blanco);
+      box-shadow: 0 10px 30px rgba(255,124,29,0.45);
+    }
+
+    .btn-secondary {
+      border: 2px solid var(--blanco);
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      color: var(--blanco);
+      background: rgba(0,0,0,0.25);
+    }
+
+    .hero-note {
+      margin-top: 2.2rem;
+      font-size: 0.85rem;
+      color: var(--blanco);
+      background: rgba(0,0,0,0.45);
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+    }
+
+    .footer {
+      background: #f7f7f7;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+/* ANIMACIONES GENERALES */
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* =========================
+   SECCION INICIO ANIMACIONES
+========================= */
+
+.hero-badges {
+  opacity: 0;
+  transform: translateY(-40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.hero h1 {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.1s ease, transform 1.1s ease;
+}
+
+.hero p {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.1s ease, transform 1.1s ease;
+}
+
+.hero-buttons {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.1s ease, transform 1.1s ease;
+}
+
+.hero-note {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.1s ease, transform 1.1s ease;
+}
+
+/* =========================
+   CLASE .show (Activa las animaciones)
+========================= */
+.hero.show .hero-badges {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero.show h1 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero.show p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero.show .hero-buttons {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero.show .hero-note {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+/* =========================
+   EXPERIENCIA
+========================= */
+.experiencia {
+  padding: 6.5rem 1rem;
+  background:
+    radial-gradient(
+      900px 360px at 15% 0%,
+      rgba(255,124,29,0.25),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 360px at 85% 100%,
+      rgba(0,0,0,0.08),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      #ff7c1d 0%,
+      #f6f6f6 45%,
+      #ffffff 100%
+    );
+}
+
+.experiencia-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* GRID GENERAL */
+.experiencia-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+/* =========================
+   TEXTO
+========================= */
+.experiencia-info h2 {
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.experiencia-info h2::after {
+  content: '';
+  width: 70px;
+  height: 4px;
+  background: var(--naranja);
+  display: block;
+  margin-top: 0.6rem;
+}
+
+.experiencia-lead {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #222;
+  margin-bottom: 2.6rem;
+  max-width: 520px;
+}
+
+/* =========================
+   CLAVES
+========================= */
+.experiencia-claves {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.2rem;
+}
+
+.clave {
+  display: flex;
+  flex-direction: column;
+}
+
+.icono {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(255,124,29,0.18);
+  color: var(--naranja);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.8rem;
+}
+
+.icono svg {
+  width: 26px;
+  height: 26px;
+}
+
+.clave h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.clave p {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* última clave ocupa todo */
+.clave:last-child {
+  grid-column: span 2;
+}
+
+/* =========================
+   MEDIA / CARRUSEL
+========================= */
+.experiencia-media {
+  width: 100%;
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.18);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.45s ease;
+}
+
+.carousel-item {
+  min-width: 100%;
+}
+
+.carousel img,
+.carousel video {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
+/* =========================
+   BOTONES
+========================= */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.carousel-btn:hover {
+  background: var(--naranja);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-btn.prev {
+  left: 16px;
+}
+
+.carousel-btn.next {
+  right: 16px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 950px) {
+  .experiencia-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .experiencia-lead {
+    max-width: 100%;
+  }
+
+  .experiencia-claves {
+    grid-template-columns: 1fr;
+  }
+
+  .clave:last-child {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel img,
+  .carousel video {
+    height: 300px;
+  }
+
+  .experiencia-info h2 {
+    font-size: 2rem;
+  }
+}
+
+
+
+/* =========================
+   BOTÓN VER GALERÍA
+========================= */
+.btn-galeria {
+  position: absolute;
+  bottom: 22px;
+  right: 22px;
+  padding: 0.75rem 1.4rem;
+  background: var(--naranja);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  z-index: 12;
+}
+
+.btn-galeria:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.35);
+  background: #e86f16;
+}
+
+/* =========================
+   SECCION EXPERIENCIA ANIMACIONES
+========================= */
+
+.experiencia-info,
+.experiencia-media {
+  opacity: 0;
+}
+
+/* ACTIVA CUANDO ENTRA EN VIEWPORT */
+.experiencia.show .experiencia-info {
+  animation: fadeRight 1s ease forwards;
+}
+
+.experiencia.show .experiencia-media {
+  animation: fadeLeft 1s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* CLAVES */
+.experiencia.show .clave {
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards;
+}
+
+.experiencia.show .clave:nth-child(1) { animation-delay: 0.2s; }
+.experiencia.show .clave:nth-child(2) { animation-delay: 0.4s; }
+.experiencia.show .clave:nth-child(3) { animation-delay: 0.6s; }
+
+/* HOVER */
+.icono {
+  transition: transform 0.35s ease, background 0.35s ease;
+}
+
+.clave:hover .icono {
+  transform: translateY(-4px) scale(1.08);
+  background: rgba(255,124,29,0.3);
+}
+
+.carousel {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.carousel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 35px 70px rgba(0,0,0,0.25);
+}
+
+.btn-galeria:hover {
+  transform: translateY(-3px) scale(1.04);
+}
+
+
+
+/* =========================
+   SERVICIOS
+========================= */
+.servicios {
+  padding: 6.5rem 1rem;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,124,29,0.18), transparent 60%),
+    radial-gradient(circle at 80% 80%, #00bfff1f, transparent 60%),
+    linear-gradient(180deg, #0d1117 0%, #1a1a1a 100%);
+  color: #fff;
+}
+
+.servicios-container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center; /* centrado global del contenido */
+}
+
+/* HEADER */
+.servicios-header {
+  max-width: 620px;
+  margin: 0 auto 4.5rem auto; /* centrado y margen inferior */
+}
+
+.servicios-header h2 {
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.servicios-header h2::after {
+  content: '';
+  width: 70px;
+  height: 4px;
+  background: var(--naranja);
+  display: block;
+  margin: 0.6rem auto 0; /* línea centrada */
+}
+
+.servicios-header p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #ddd;
+}
+
+/* GRID */
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  justify-items: center; /* centra las tarjetas en PC también */
+}
+
+/* CARD */
+.servicio-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* asegura centrado del texto dentro de la tarjeta */
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Hover: tarjeta completa se expande */
+.servicio-card:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 28px 55px rgba(0,0,0,0.35);
+}
+
+/* IMAGEN */
+.servicio-img {
+  width: 100%;
+  height: 280px; /* imagen más protagonista */
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* Eliminamos zoom individual de la imagen */
+.servicio-card:hover .servicio-img {
+  transform: none;
+}
+
+/* ICONO */
+.servicio-icono {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: rgba(255,124,29,0.3);
+  color: var(--naranja);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -29px; /* superpone un poco la imagen */
+  margin-bottom: 1rem;
+  border: 3px solid #ffffff;
+}
+
+.servicio-icono svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* TEXTO */
+.servicio-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.servicio-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #eee;
+  margin-bottom: 1.8rem;
+}
+
+/* BOTÓN */
+.servicio-btn {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background: var(--naranja);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.servicio-btn:hover {
+  background: #e86f16;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .servicio-img {
+    height: 220px;
+  }
+
+  .servicios-header h2 {
+    font-size: 2rem;
+  }
+
+  .servicio-card {
+    padding: 1.8rem 1.5rem;
+  }
+}
+
+/* =========================
+   ANIMACIÓN SCROLL
+========================= */
+.servicio-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+
+/* =========================
+   SERVICIOS - ANIMACIONES HEADER
+========================= */
+
+.servicios-header h2,
+.servicios-header p {
+  opacity: 0;
+}
+
+/* ACTIVA AL HACER SCROLL */
+.servicios.show .servicios-header h2 {
+  animation: fadeUp 0.9s ease forwards;
+}
+
+.servicios.show .servicios-header p {
+  animation: fadeUp 0.9s ease forwards;
+  animation-delay: 0.25s;
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+   MODALES
+========================= */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 9999;
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #0d1117;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 520px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  transform: scale(0.8);
+  transition: transform 0.4s ease;
+}
+
+.modal.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.modal-content h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+
+.modal-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ddd;
+  margin-bottom: 1.5rem;
+}
+
+.modal-content .servicio-btn {
+  padding: 0.7rem 1.8rem;
+  font-size: 0.95rem;
+}
+
+/* Botón de cerrar */
+.modal-content .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.6rem;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.modal-content .close:hover {
+  color: var(--naranja);
+}
+
+/* RESPONSIVE MODALES */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 1.5rem;
+  }
+
+  .modal-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .modal-content p {
+    font-size: 0.95rem;
+  }
+}
+
+
+
+
+/* =========================
+   BASE & PLANES
+========================= */
+.base-planes {
+  padding: 6.5rem 1rem;
+  background: linear-gradient(180deg, #ff7d00 0%, #e6e6e6 100%);
+  color: #1a1a1a; /* texto oscuro para contraste */
+}
+
+.base-planes .container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+/* TÍTULOS */
+.base-planes h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.base-planes h2::after {
+  content: '';
+  width: 90px;
+  height: 5px;
+  background: var(--naranja);
+  display: block;
+  margin: 0.6rem auto 0;
+  border-radius: 4px;
+}
+
+.base-planes p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 3rem;
+  font-weight: 500;
+}
+
+/* GRID UBICACIÓN Y PLANES */
+.base-planes .grid {
+  display: grid;
+  gap: 2.5rem;
+  justify-items: center;
+}
+
+@media (min-width: 768px) {
+  .base-planes .grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* TARJETAS UBICACIÓN & PLANES */
+.ubicacion-card,
+.plan-card {
+  background: #ffffff; /* tarjetas claras */
+  border-radius: 24px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  text-align: left;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  color: #1a1a1a;
+}
+
+/* IMAGEN DESTACADA */
+.ubicacion-card img,
+.plan-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease;
+}
+
+/* HOVER EFECTO */
+.ubicacion-card:hover,
+.plan-card:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+/* TÍTULOS DE TARJETA */
+.ubicacion-card h3,
+.plan-card h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+  color: #1a1a1a;
+}
+
+/* TEXTO TARJETA */
+.ubicacion-card ul,
+.plan-card p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* ICONOS */
+.icon-list li i {
+  color: var(--naranja);
+  margin-right: 0.5rem;
+}
+
+/* ANIMACIÓN SCROLL */
+.ubicacion-card.visible,
+.plan-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .base-planes h2 {
+    font-size: 2.2rem;
+  }
+
+  .ubicacion-card,
+  .plan-card {
+    padding: 1.8rem 1rem;
+  }
+
+  .ubicacion-card img,
+  .plan-card img {
+    height: 160px;
+  }
+}
+
+
+
+
+
+/* =========================
+   PLANES - ANIMACIÓN SCROLL
+========================= */
+
+.base-planes h2,
+.base-planes p {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.base-planes.show h2 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.base-planes.show p {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.25s;
+}
+
+
+
+
+
+/* =========================
+   ESTILOS DEL MODAL (FONDO CLARO)
+========================= */
+.modal-content {
+  position: relative;
+  background-color: var(--negro); /* fondo oscuro o claro según tu variable */
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 800px;
+  width: 90%; /* para adaptarse a pantallas pequeñas */
+  max-height: 90vh; /* no sobrepasar altura de la pantalla */
+  overflow-y: auto; /* scroll interno si contenido es muy largo */
+  margin: 0 auto;
+  color: #1a1a1a; /* texto oscuro */
+  text-align: center;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* IMAGEN EN MODAL */
+.modal-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* BOTONES DE CIERRE EN EL MODAL */
+.modal .close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 2rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.modal .close:hover {
+  color: var(--blanco);
+  transform: scale(1.1);
+}
+
+/* ESTILO DEL BOTÓN DE AGENDAR EN EL MODAL */
+.servicio-btn {
+  background-color: var(--naranja); /* color naranja corporativo */
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border-radius: 12px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-top: 1rem;
+}
+
+.servicio-btn:hover {
+  background-color: #ff7f00; /* naranja más intenso */
+  transform: scale(1.05);
+}
+
+/* =========================
+   AJUSTES ESPECÍFICOS PARA DESKTOP
+========================= */
+@media (min-width: 1200px) {
+  .modal-content {
+    width: 60%; /* más pequeño que antes en pantallas grandes */
+  }
+}
+
+
+
+.sobre-nosotros {
+  padding:4rem 1rem;
+  background:#0d1117;
+  color:#fff;
+}
+
+.sobre-nosotros-container {
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2.5rem;
+  align-items:center;
+}
+
+.sobre-nosotros-info h2 {
+  font-size:2.4rem;
+  margin-bottom:1rem;
+  line-height:1.2;
+}
+
+.beneficios {
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.8rem;
+  margin-bottom:2rem;
+}
+
+.beneficio {
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  background: rgba(255,124,29,0.2);
+  color:#fff;
+  padding:0.5rem 0.9rem;
+  border-radius:12px;
+  font-weight:600;
+  font-size:0.9rem;
+}
+
+.servicio-btn {
+  background:#FF7C1D;
+  padding:0.9rem 2rem;
+  border-radius:30px;
+  font-weight:700;
+  color:#fff;
+  display:inline-block;
+  transition: transform 0.3s;
+}
+
+.servicio-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(255,124,29,0.4);
+}
+
+.sobre-nosotros-media img {
+  width:100%;
+  max-width:500px;
+  border-radius:24px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+
+
+
+/* =========================
+   SOBRE NOSOTROS - ANIMACIONES
+========================= */
+
+.sobre-nosotros-info,
+.sobre-nosotros-media,
+.beneficio {
+  opacity: 0;
+}
+
+/* TEXTO */
+.sobre-nosotros.show .sobre-nosotros-info {
+  animation: fadeRight 1s ease forwards;
+}
+
+/* IMAGEN */
+.sobre-nosotros.show .sobre-nosotros-media {
+  animation: fadeLeft 1s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* BENEFICIOS (en cascada) */
+.sobre-nosotros.show .beneficio {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.sobre-nosotros.show .beneficio:nth-child(1) { animation-delay: 0.2s; }
+.sobre-nosotros.show .beneficio:nth-child(2) { animation-delay: 0.35s; }
+.sobre-nosotros.show .beneficio:nth-child(3) { animation-delay: 0.5s; }
+
+
+
+
+
+
+
+
+
+
+/* Media queries */
+@media (max-width:950px) {
+  .sobre-nosotros-container {
+    grid-template-columns:1fr;
+    gap:2rem;
+    text-align:center;
+  }
+  .sobre-nosotros-media {
+    order:2;
+    margin-top:2rem;
+  }
+}
+
+@media (max-width:480px) {
+  .sobre-nosotros-info h2 { font-size:1.8rem; }
+  .sobre-nosotros-info p { font-size:0.95rem; }
+  .servicio-btn { padding:0.8rem 1.8rem; font-size:0.95rem; }
+  .sobre-nosotros-media img { width:90%; max-width:350px; border-radius:20px; }
+  .beneficios { flex-direction:column; gap:0.6rem; align-items:center; }
+}
+
+
+/* PRELOADER */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #000; /* fondo negro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#preloader img {
+  width: 120px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Animación suave */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+
+/* =========================
+   CONTACTO - ANIMACIONES
+========================= */
+
+#contacto h2,
+#contacto p,
+.contacto-formulario,
+.contacto-info {
+  opacity: 0;
+}
+
+/* Formulario */
+#contacto.show .contacto-formulario {
+  animation: fadeRight 1s ease forwards;
+}
+
+/* Info */
+#contacto.show .contacto-info {
+  animation: fadeLeft 1s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* Texto */
+#contacto.show h2 {
+  animation: fadeUp 0.9s ease forwards;
+}
+
+#contacto.show p {
+  animation: fadeUp 0.9s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* Botón */
+#contacto button:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 10px 25px rgba(255,124,29,0.4);
+}
+
+
+
+
+
+
+
+  </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+    <!-- PRELOADER -->
+<div id="preloader">
+  <img src="img/favicon.png" alt="ALAS PARA TODOS">
+</div>
+
+
+<header class="navbar">
+  <div class="nav-container">
+    <a href="#inicio" class="logo">
+      <img src="img/logo_nav.jpg" alt="Alas Para Todos">
+      <span>ALAS PARA TODOS®</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#inicio">Inicio</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#planes">Planes</a>
+      <a href="#sobre-nosotros">Nosotros</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto" class="btn-nav">Contacto</a>
+    </nav>
+
+    <div class="menu-toggle" id="menuToggle">☰</div>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-content">
+
+    <!-- BADGES -->
+    <div class="hero-badges">
+      <div class="hero-badge">✈️ Aviación recreativa certificada</div>
+      <div class="hero-badge">🧑‍✈️ Pilotos profesionales</div>
+    </div>
+
+    <h1>
+      Volar no es un privilegio,<br>
+      <span>es una experiencia para todos</span>
+    </h1>
+
+    <p>
+      Vive un vuelo real en aeronaves ultralivianas certificadas,
+      acompañado por pilotos experimentados y bajo estrictos
+      estándares de seguridad aeronáutica.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#contacto" class="btn-primary">Piloto por un día</a>
+      <a href="#experiencia" class="btn-secondary">Conoce más</a>
+    </div>
+
+    <div class="hero-note">
+      ✔ Pilotos certificados · ✔ Vuelos reales · ✔ Seguridad garantizada
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="experiencia" id="experiencia">
+  <div class="experiencia-container experiencia-grid">
+
+    <!-- TEXTO + CLAVES -->
+    <div class="experiencia-info">
+
+      <h2>La experiencia de volar</h2>
+
+      <p class="experiencia-lead">
+        Un primer acercamiento real a la aviación deportiva, diseñado para inspirar, educar y despertar la pasión por el cielo.
+      </p>
+
+      <div class="experiencia-claves">
+
+        <div class="clave">
+          <div class="icono">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M2 16l20-4-20-4 4 4-4 4z"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Vuelo real</h3>
+          <p>Aeronaves ultralivianas certificadas.</p>
+        </div>
+
+        <div class="clave">
+          <div class="icono">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9"
+                      stroke="currentColor"
+                      stroke-width="1.8"/>
+              <path d="M12 7l3 5-3 5-3-5 3-5z"
+                    stroke="currentColor"
+                    stroke-width="1.8"/>
+            </svg>
+          </div>
+          <h3>Inducción aérea</h3>
+          <p>Conocimiento básico y cultura aeronáutica.</p>
+        </div>
+
+        <div class="clave">
+          <div class="icono">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="8" r="4"
+                      stroke="currentColor"
+                      stroke-width="1.8"/>
+              <path d="M4 20c0-4 4-6 8-6s8 2 8 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"/>
+            </svg>
+          </div>
+          <h3>Para todos</h3>
+          <p>Incluyente, segura y accesible.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CARRUSEL -->
+    <div class="experiencia-media">
+      <div class="carousel">
+
+        <button class="carousel-btn prev" id="prevBtn">‹</button>
+
+        <div class="carousel-track" id="carouselTrack">
+
+          <div class="carousel-item">
+            <img src="img/banner1.png" alt="Vuelo ultraliviano">
+          </div>
+
+          <div class="carousel-item">
+            <video src="img/videobanner.mp4" controls muted></video>
+          </div>
+
+          <div class="carousel-item">
+            <img src="img/banner2.png" alt="Cabina de vuelo">
+          </div>
+
+        </div>
+
+        <button class="carousel-btn next" id="nextBtn">›</button>
+
+        <a href="#galeria" class="btn-galeria">
+  Ver galería
+</a>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     SECCIÓN SERVICIOS
+========================= -->
+<section class="servicios" id="servicios">
+  <div class="servicios-container">
+
+    <div class="servicios-header">
+      <h2>Nuestros servicios</h2>
+      <p>
+        Experiencias aeronáuticas diseñadas para inspirar, educar y conectar
+        con el mundo de la aviación de forma real y segura.
+      </p>
+    </div>
+
+    <div class="servicios-grid">
+
+      <!-- SERVICIO 1 -->
+      <div class="servicio-card">
+        <img src="img/tarjeta1.jpeg" alt="Vuelos de inducción" class="servicio-img">
+        <div class="servicio-icono">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M2 19L22 12 2 5l4 4-4 4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Vuelos de Inducción</h3>
+        <p>
+          Primer acercamiento a la aviación deportiva con vuelos de 15 a 90 min, paquetes familiares y experiencias personalizadas.
+        </p>
+        <a href="#" class="servicio-btn" data-modal="modal1">Más información</a>
+      </div>
+
+      <!-- SERVICIO 2 -->
+      <div class="servicio-card">
+        <img src="img/tarjeta2.png" alt="Formación aeronáutica" class="servicio-img">
+        <div class="servicio-icono">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 4h18v16H3V4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M3 8h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Formación Aeronáutica</h3>
+        <p>
+          Cursos de piloto ultraliviano, entrenamiento, habilitación y reentrenamiento bajo estándares RAC y OACI.
+        </p>
+        <a href="#" class="servicio-btn" data-modal="modal2">Más información</a>
+      </div>
+
+      <!-- SERVICIO 3 -->
+      <div class="servicio-card">
+        <img src="img/tarjeta3.png" alt="Programas académicos" class="servicio-img">
+        <div class="servicio-icono">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Programas Académicos</h3>
+        <p>
+          Talleres de CRM, SMS, Derecho Aeronáutico, Meteorología, Aerodinámica, Navegación y procedimientos operacionales.
+        </p>
+        <a href="#" class="servicio-btn" data-modal="modal3">Más información</a>
+      </div>
+
+      <!-- SERVICIO 4 -->
+      <div class="servicio-card">
+        <img src="img/tarjeta4.png" alt="Fomento Aero deportiva" class="servicio-img">
+        <div class="servicio-icono">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7l3-7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Fomento Aero deportiva</h3>
+        <p>
+          Exposiciones aéreas, convenios educativos y programas de turismo aéreo responsable para la comunidad.
+        </p>
+        <a href="#" class="servicio-btn" data-modal="modal4">Más información</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+     MODALES
+========================= -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img src="img/tarjeta1.jpeg" alt="Vuelos de inducción">
+    <h3>Vuelos de Inducción</h3>
+    <p>
+      Disfruta un primer acercamiento real a la aviación deportiva con vuelos de 15, 30, 45 y 60 minutos. 
+      Incluye paquetes familiares y experiencias personalizadas.  
+      <br><strong>Puntos destacados:</strong> Mosaico de Cultivos, Río Cauca, Humedales cercanos.
+    </p>
+    <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20Vuelos%20de%20Inducción" target="_blank" class="servicio-btn">Agendar</a>
+  </div>
+</div>
+
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img src="img/tarjeta2.png" alt="Formación aeronáutica">
+    <h3>Formación Aeronáutica</h3>
+    <p>
+      Cursos de piloto ultraliviano, entrenamiento, habilitación y reentrenamiento bajo estándares RAC y OACI. 
+      <br><strong>Incluye:</strong> Teoría, prácticas y simulación de vuelo.
+    </p>
+    <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20Formación%20Aeronáutica" target="_blank" class="servicio-btn">Agendar</a>
+  </div>
+</div>
+
+<div id="modal3" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img src="img/tarjeta3.png" alt="Programas académicos">
+    <h3>Programas Académicos</h3>
+    <p>
+      Talleres de CRM, SMS, Derecho Aeronáutico, Meteorología, Aerodinámica, Navegación y procedimientos operacionales. 
+      <br><strong>Objetivo:</strong> Formación integral del aviador deportivo con teoría y práctica.
+    </p>
+    <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20Programas%20Académicos" target="_blank" class="servicio-btn">Agendar</a>
+  </div>
+</div>
+
+<div id="modal4" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img src="img/tarjeta4.png" alt="Fomento Aero deportiva">
+    <h3>Fomento Aerodeportivo</h3>
+    <p>
+  Exposiciones aéreas, convenios educativos y programas de turismo aéreo responsable para la comunidad.  
+  <br><strong>Beneficios:</strong> Acceso a la aviación, participación en eventos y actividades educativas.
+</p>
+    <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20Fomento%20Aero%20Deportiva" target="_blank" class="servicio-btn">Agendar</a>
+  </div>
+</div>
+
+
+
+
+<!-- =========================
+     PLANES DE VUELO
+========================= -->
+<section class="base-planes" id="planes">
+  <div class="container mx-auto px-4 py-16 text-center">
+
+    <h2 class="text-3xl font-bold mb-4">Planes de Vuelo</h2>
+    <p class="text-gray-300 max-w-3xl mx-auto mb-12">
+      Seleccione el plan que se ajuste a su disponibilidad y preferencias.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Plan 1 -->
+      <div class="plan-card p-6 bg-gray-800 rounded-xl visible">
+        <img src="img/plan1.jpeg" alt="Plan Corazón del Valle" class="rounded-xl mb-4">
+        <h3>🌿 Corazón del Valle</h3>
+        <ul class="icon-list">
+          <li><i class="fas fa-clock"></i> Duración: 30 - 45 min</li>
+          <li><i class="fas fa-user"></i> Ideal para principiantes o paseo rápido</li>
+        </ul>
+        <button class="servicio-btn mt-4" data-modal="modalPlan1">Más información</button>
+      </div>
+
+      <!-- Plan 2 -->
+      <div class="plan-card p-6 bg-gray-800 rounded-xl visible">
+        <img src="img/plan2.jpeg" alt="Plan Historias y Cúpulas" class="rounded-xl mb-4">
+        <h3>✨ Historias y Cúpulas</h3>
+        <ul class="icon-list">
+          <li><i class="fas fa-clock"></i> Duración: 45 - 60 min</li>
+          <li><i class="fas fa-university"></i> Para amantes de historia y arquitectura</li>
+        </ul>
+        <button class="servicio-btn mt-4" data-modal="modalPlan2">Más información</button>
+      </div>
+
+      <!-- Plan 3 -->
+      <div class="plan-card p-6 bg-gray-800 rounded-xl visible">
+        <img src="img/plan3.jpeg" alt="Plan Premium Cumbres y Agua" class="rounded-xl mb-4">
+        <h3>⛰️ Premium – Cumbres y Agua</h3>
+        <ul class="icon-list">
+          <li><i class="fas fa-clock"></i> Duración: 90 min o más</li>
+          <li><i class="fas fa-star"></i> Para entusiastas y celebraciones especiales</li>
+        </ul>
+        <button class="servicio-btn mt-4" data-modal="modalPlan3">Más información</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+     MODALES DE PLANES
+========================= -->
+<div id="modalPlan1" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img src="img/plan1.jpeg" alt="Plan Corazón del Valle" class="rounded-xl mb-4">
+    <h3>🌿 Corazón del Valle</h3>
+    <p>
+      Vuelo panorámico de 30 a 45 minutos, ideal para principiantes o quienes buscan un paseo rápido.  
+      <br><strong>Puntos clave:</strong> Mosaico de cultivos, Río Cauca, humedales locales.
+    </p>
+    <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20el%20Plan%20Corazón%20del%20Valle" target="_blank" class="servicio-btn">Agendar</a>
+  </div>
+</div>
+
+<div id="modalPlan2" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img src="img/plan2.jpeg" alt="Plan Historias y Cúpulas" class="rounded-xl mb-4">
+    <h3>✨ Historias y Cúpulas</h3>
+    <p>
+      Vuelo cultural de 45 a 60 minutos, pensado para quienes desean combinar vuelo con apreciación histórica y arquitectónica.  
+      <br><strong>Puntos clave:</strong> Basílica de Buga, Hacienda El Paraíso, ciudades del centro del Valle.
+    </p>
+    <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20el%20Plan%20Historias%20y%20Cúpulas" target="_blank" class="servicio-btn">Agendar</a>
+  </div>
+</div>
+
+<div id="modalPlan3" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img src="img/plan3.jpeg" alt="Plan Premium Cumbres y Agua" class="rounded-xl mb-4">
+    <h3>⛰️ Premium – Cumbres y Agua</h3>
+    <p>
+      Vuelo extendido de 90 minutos o más, para entusiastas o celebraciones especiales, ofreciendo vistas completas del Valle y sus contrastes geográficos.  
+      <br><strong>Puntos clave:</strong> Cordillera Central, embalse Lago Calima, paisajes impactantes.
+    </p>
+    <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20el%20Plan%20Premium%20Cumbres%20y%20Agua" target="_blank" class="servicio-btn">Agendar</a>
+  </div>
+</div>
+
+
+<section class="sobre-nosotros" id="sobre-nosotros">
+  <div class="sobre-nosotros-container">
+
+    <!-- TEXTO -->
+    <div class="sobre-nosotros-info">
+      <h2>Sobre <span class="highlight">Nosotros</span></h2>
+      <p>Somos un equipo apasionado por acercar la <strong>experiencia de volar</strong> a todos.</p>
+      <div class="beneficios">
+        <div class="beneficio">✈️ Vuelos seguros</div>
+        <div class="beneficio">🧑‍✈️ Pilotos certificados</div>
+        <div class="beneficio">🌍 Experiencia inclusiva</div>
+      </div>
+      <a href="#servicios" class="servicio-btn">Conoce nuestros servicios</a>
+    </div>
+
+    <!-- IMAGEN -->
+    <div class="sobre-nosotros-media">
+      <img src="img/servicio1.jpeg" alt="Sobre Nosotros">
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- =========================
+     SECCIÓN GALERÍA (Fotos y Videos)
+========================= -->
+<section id="galeria" style="padding:4rem 1rem; background:#ff7d00; color:#000000;">
+  <div style="max-width:1200px; margin:auto;">
+    <!-- Título -->
+    <h2 style="font-size:2.4rem; text-align:center; margin-bottom:2rem;">
+      Nuestra <span style="color:#ffffff;">Experiencia en Fotos y Videos</span>
+    </h2>
+
+    <!-- Grid de medios -->
+    <div class="galeria-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1.5rem;">
+      
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/1.jpeg" alt="Vuelo 1" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+      
+      <!-- Video -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <video controls style="width:100%; height:250px; object-fit:cover;">
+          <source src="galeria/video/1.mp4" type="video/mp4">
+          Tu navegador no soporta videos.
+        </video>
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/2.png" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Video -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <video controls style="width:100%; height:250px; object-fit:cover;">
+          <source src="galeria/video/2.mp4" type="video/mp4">
+          Tu navegador no soporta videos.
+        </video>
+      </div>
+
+       <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/3.jpeg" alt="Vuelo 1" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+      
+      <!-- Video -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <video controls style="width:100%; height:250px; object-fit:cover;">
+          <source src="galeria/video/3.mp4" type="video/mp4">
+          Tu navegador no soporta videos.
+        </video>
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/4.jpeg" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Video -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <video controls style="width:100%; height:250px; object-fit:cover;">
+          <source src="galeria/video/4.mp4" type="video/mp4">
+          Tu navegador no soporta videos.
+        </video>
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/5.jpeg" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Video -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <video controls style="width:100%; height:250px; object-fit:cover;">
+          <source src="galeria/video/5.mp4" type="video/mp4">
+          Tu navegador no soporta videos.
+        </video>
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/6.jpeg" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Video -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <video controls style="width:100%; height:250px; object-fit:cover;">
+          <source src="galeria/video/6.mp4" type="video/mp4">
+          Tu navegador no soporta videos.
+        </video>
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/7.png" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/8.jpeg" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/9.png" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/10.jpeg" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/11.jpeg" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/12.jpeg" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/14.jpeg" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/15.jpeg" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/16.jpeg" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/17.jpeg" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/18.jpeg" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+
+      <!-- Imagen -->
+      <div class="galeria-item" style="overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <img src="galeria/img/19.png" alt="Vuelo 2" style="width:100%; height:250px; object-fit:cover; transition: transform 0.3s;">
+      </div>
+      <!-- Más fotos y videos según necesites -->
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hover efecto zoom para imágenes */
+  .galeria-item img:hover {
+    transform: scale(1.05);
+  }
+
+  /* Hover efecto leve para videos */
+  .galeria-item video:hover {
+    transform: scale(1.02);
+  }
+
+  /* Responsivo para móviles */
+  @media (max-width:480px) {
+    .galeria-grid {
+      grid-template-columns:1fr; /* columna única */
+      gap:1rem;
+    }
+    .galeria-item img,
+    .galeria-item video {
+      height:200px;
+    }
+  }
+</style>
+
+
+
+
+<!-- =========================
+     SECCIÓN CONTACTO
+========================= -->
+<section id="contacto" style="padding:4rem 1rem; background:#0d1117; color:#fff;">
+  <div style="max-width:1200px; margin:auto; display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start;">
+<!-- FORMULARIO -->
+<div class="contacto-formulario">
+  <h2 style="font-size:2.4rem; margin-bottom:1rem;">
+    Contáctanos <span style="color:#FF7C1D;">Hoy</span>
+  </h2>
+  <p style="font-size:1rem; line-height:1.6; margin-bottom:2rem;">
+    Escríbenos tus dudas, consultas o reservas, y nuestro equipo te responderá lo antes posible.
+  </p>
+
+  <form id="whatsapp-form" style="display:flex; flex-direction:column; gap:1rem;">
+    <input type="text" name="nombre" placeholder="Tu nombre" required style="padding:0.8rem 1rem; border-radius:12px; border:none; background:#1a1a1a; color:#fff; font-size:1rem;">
+    <input type="email" name="correo" placeholder="Tu correo" required style="padding:0.8rem 1rem; border-radius:12px; border:none; background:#1a1a1a; color:#fff; font-size:1rem;">
+    <textarea name="mensaje" placeholder="Tu mensaje" rows="5" required style="padding:0.8rem 1rem; border-radius:12px; border:none; background:#1a1a1a; color:#fff; font-size:1rem;"></textarea>
+    <button type="submit" style="background:#FF7C1D; color:#fff; padding:0.9rem 2rem; border-radius:30px; font-weight:700; transition: transform 0.3s;">
+      Enviar WhatsApp
+    </button>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('whatsapp-form');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault(); // Evita que recargue la página
+
+    // Obtener valores del formulario
+    const nombre = form.nombre.value.trim();
+    const correo = form.correo.value.trim();
+    const mensaje = form.mensaje.value.trim();
+
+    // Crear mensaje para WhatsApp
+    const texto = `Hola, quiero información:%0A*Nombre:* ${nombre}%0A*Correo:* ${correo}%0A*Mensaje:* ${mensaje}`;
+
+    // Abrir WhatsApp en nueva pestaña
+    const numero = '+573106565366'; // Tu número de WhatsApp
+    window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
+  });
+</script>
+
+
+    <!-- INFO DE CONTACTO + MAPS -->
+    <div class="contacto-info" style="display:flex; flex-direction:column; gap:1.5rem;">
+      <h3 style="font-size:1.6rem; margin-bottom:1rem;">También puedes contactarnos por:</h3>
+      <p>📞 Teléfono: <a href="tel:+573106565366" style="color:#FF7C1D;">+57 310 656 5366</a></p>
+      <p>✉️ Correo: <a href="mailto:info@alasparatodos.com" style="color:#FF7C1D;">info@alasparatodos.com</a></p>
+      <p>🌐 Redes Sociales:</p>
+      <div style="display:flex; gap:1rem; margin-top:0.5rem;">
+        <a href="https://www.instagram.com/soyalasparatodos/" target="_blank" style="color:#FF7C1D; font-size:1.5rem;"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/soyalasparatodos/" target="_blank" style="color:#FF7C1D; font-size:1.5rem;"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@soyalasparatodos?is_from_webapp=1&sender_device=pc" target="_blank" style="color:#FF7C1D; font-size:1.5rem;">
+  <i class="fab fa-tiktok"></i>
+</a>
+
+        <a href="https://wa.me/573106565366" target="_blank" style="color:#FF7C1D; font-size:1.5rem;"><i class="fab fa-whatsapp"></i></a>
+      </div>
+
+      <!-- MAPS -->
+      <div style="margin-top:1.5rem; width:100%; height:300px; border-radius:12px; overflow:hidden; box-shadow:0 10px 20px rgba(0,0,0,0.3);">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3981.130958324688!2d-76.32565822596547!3d3.781672048940874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zM8KwNDYnNTQuMCJOIDc2wrAxOScyMy4xIlc!5e0!3m2!1ses-419!2sco!4v1765826294543!5m2!1ses-419!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<footer class="footer" style="background: var(--naranja); color: var(--negro); padding: 4rem 1rem; box-shadow: 0 -6px 20px rgba(0,0,0,0.25);">
+  <div class="footer-container" style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem;">
+
+    <!-- Logos de empresas -->
+    <div class="footer-logos" style="display: flex; align-items: center; gap: 2rem;">
+      
+      <!-- Logo principal -->
+      <div class="footer-logo" style="display: flex; align-items: center; gap: 1rem;">
+        <img src="img/logo_nav.jpg" alt="ALAS PARA TODOS" style="width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--blanco); padding: 3px; box-shadow: 0 5px 15px rgba(0,0,0,0.4);">
+        <div>
+          <h2 style="font-size: 1.5rem; font-weight: 800; color: #fff; text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">ALAS PARA TODOS®</h2>
+          <p style="font-size: 1rem; color: #fff; font-weight: 600;">Aviación deportiva y recreativa</p>
+        </div>
+      </div>
+
+      <!-- Logo colaborador -->
+      <div class="footer-logo" style="display: flex; align-items: center; gap: 1rem;">
+        <img src="img/logoapoyo.jpeg" alt="EMPRESA COLABORADORA" style="width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--blanco); padding: 3px; box-shadow: 0 5px 15px rgba(0,0,0,0.4);">
+       
+
+    </div>
+
+    <!-- Redes sociales -->
+    <div class="footer-redes" style="display: flex; gap: 1.8rem;">
+      <a href="https://www.facebook.com" target="_blank" style="color: #fff; transition: transform 0.3s, color 0.3s;">
+        <!-- SVG Facebook -->
+      </a>
+      <a href="https://www.instagram.com" target="_blank" style="color: #fff; transition: transform 0.3s, color 0.3s;">
+        <!-- SVG Instagram -->
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Derechos -->
+  <div style="margin-top: 3rem; border-top: 2px solid #fff; padding-top: 1.5rem; text-align: center; font-size: 1rem; font-weight: 600; color: #000; text-shadow: 1px 1px 3px rgba(255,255,255,0.3);">
+    © 2025 ALAS PARA TODOS® · Todos los derechos reservados
+  </div>
+</footer>
+
+
+<style>
+  /* Hover animado para los íconos */
+  .footer-redes a:hover {
+    transform: scale(1.2);
+    color: var(--negro);
+  }
+
+  /* Transición suave en el logo */
+  .footer-logo img {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .footer-logo img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  }
+</style>
+
+
+
+
+
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  /* Botón hover */
+  .contacto-formulario button:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(255,124,29,0.4);
+  }
+
+  /* Responsive tablets */
+  @media (max-width:950px) {
+    #contacto div {
+      grid-column:1/-1;
+    }
+    .contacto-info {
+      text-align:center;
+      align-items:center;
+    }
+  }
+
+  /* Responsive móviles */
+  @media (max-width:480px) {
+    .contacto-formulario h2 {
+      font-size:1.8rem;
+    }
+    .contacto-formulario p {
+      font-size:0.95rem;
+    }
+    .contacto-formulario input,
+    .contacto-formulario textarea {
+      font-size:0.95rem;
+    }
+    .contacto-formulario button {
+      font-size:0.95rem;
+      padding:0.8rem 1.8rem;
+    }
+    .contacto-info h3 {
+      font-size:1.3rem;
+    }
+    .contacto-info iframe {
+      height:250px;
+    }
+  }
+</style>
+
+
+<!-- =========================
+     BOTÓN FLOTA WHATSAPP REDONDO SVG
+========================= -->
+<div id="whatsapp-button" style="position:fixed;bottom:20px;right:20px;z-index:9999;cursor:pointer;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#25D366" class="bi bi-whatsapp" viewBox="0 0 16 16"
+       style="border-radius:50%;background:#ffffff;padding:8px;box-shadow:0 5px 15px rgba(0,0,0,0.3);transition: transform 0.3s;">
+    <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+  </svg>
+</div>
+
+<style>
+  /* Hover animado para el botón */
+  #whatsapp-button:hover svg {
+    transform: scale(1.2);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  }
+</style>
+
+
+<!-- =========================
+     VENTANA DE CHAT EMERGENTE
+========================= -->
+<div id="whatsapp-chat" style="position:fixed;bottom:90px;right:20px;width:320px;background:white;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.2);display:none;flex-direction:column;overflow:hidden;z-index:9999;font-family:Arial,sans-serif;">
+  
+  <!-- Header con logo -->
+  <div style="background:#ffffff;color:white;padding:12px;font-weight:700;text-align:center;display:flex;align-items:center;gap:10px;">
+    <img src="img/logo_nav.jpg" alt="Alas Para Todos" style="width:32px;height:32px;border-radius:6px;">
+    <span>ALAS PARA TODOS</span>
+  </div>
+
+  <!-- Área de mensajes -->
+  <div id="chat-messages" style="padding:12px;flex-grow:1;overflow-y:auto;height:220px;display:flex;flex-direction:column;gap:8px;">
+    <!-- Mensaje de bienvenida dinámico se agrega con JS -->
+  </div>
+
+  <!-- Input de mensaje -->
+  <div style="display:flex;border-top:1px solid #ddd;">
+    <textarea id="whatsapp-message" placeholder="Escribe tu mensaje..." style="flex-grow:1;padding:10px;border:none;outline:none;height:50px;resize:none;"></textarea>
+    <button id="whatsapp-send" style="background:#FF7C1D;color:white;padding:0 16px;border:none;font-weight:700;cursor:pointer;">Enviar</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- =========================
+     SCRIPT DE FUNCIONAMIENTO
+========================= -->
+<script>
+  const whatsappButton = document.getElementById('whatsapp-button');
+  const whatsappChat = document.getElementById('whatsapp-chat');
+  const chatMessages = document.getElementById('chat-messages');
+  const whatsappSend = document.getElementById('whatsapp-send');
+  const whatsappMessage = document.getElementById('whatsapp-message');
+  const whatsappIcon = document.getElementById('whatsapp-icon');
+
+  // Animación hover
+  whatsappButton.addEventListener('mouseover', () => {
+    whatsappIcon.style.transform = 'scale(1.1)';
+  });
+  whatsappButton.addEventListener('mouseout', () => {
+    whatsappIcon.style.transform = 'scale(1)';
+  });
+
+  // Abrir / cerrar chat
+  whatsappButton.addEventListener('click', () => {
+    whatsappChat.style.display = whatsappChat.style.display === 'flex' ? 'none' : 'flex';
+    if(whatsappChat.style.display === 'flex') startTypingMessage("Hola 👋, bienvenido a ALAS PARA TODOS. ¿En qué podemos ayudarte hoy?");
+  });
+
+  // Simulación de escritura
+  function startTypingMessage(text) {
+    const msgDiv = document.createElement('div');
+    msgDiv.style.alignSelf = 'flex-start';
+    msgDiv.style.background = '#FF7C1D';
+    msgDiv.style.color = 'white';
+    msgDiv.style.padding = '8px 12px';
+    msgDiv.style.borderRadius = '12px';
+    msgDiv.style.maxWidth = '80%';
+    chatMessages.appendChild(msgDiv);
+
+    let index = 0;
+    const typingInterval = setInterval(() => {
+      msgDiv.textContent += text[index];
+      index++;
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      if(index >= text.length) clearInterval(typingInterval);
+    }, 50);
+  }
+
+  // Enviar mensaje a WhatsApp
+  whatsappSend.addEventListener('click', () => {
+    const message = whatsappMessage.value.trim();
+    if(message){
+      const userDiv = document.createElement('div');
+      userDiv.style.alignSelf = 'flex-end';
+      userDiv.style.background = '#eee';
+      userDiv.style.color = '#333';
+      userDiv.style.padding = '8px 12px';
+      userDiv.style.borderRadius = '12px';
+      userDiv.style.maxWidth = '80%';
+      userDiv.textContent = message;
+      chatMessages.appendChild(userDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      const phone = "57310656366"; // tu número de WhatsApp
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+
+      whatsappMessage.value = "";
+    } else {
+      alert("Escribe un mensaje antes de enviar");
+    }
+  });
+</script>
+
+
+
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
+
+
+
+<script>
+  const track = document.getElementById('carouselTrack');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const items = document.querySelectorAll('.carousel-item');
+
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    const width = items[0].offsetWidth;
+    track.style.transform = `translateX(-${currentIndex * width}px)`;
+
+    // Control de video (pausa los que no están activos)
+    items.forEach((item, index) => {
+      const video = item.querySelector('video');
+      if (video) {
+        index === currentIndex ? video.play() : video.pause();
+      }
+    });
+  }
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex++;
+    if (currentIndex >= items.length) {
+      currentIndex = 0;
+    }
+    updateCarousel();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex--;
+    if (currentIndex < 0) {
+      currentIndex = items.length - 1;
+    }
+    updateCarousel();
+  });
+
+  window.addEventListener('resize', updateCarousel);
+
+  // Inicializar
+  updateCarousel();
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // =========================
+  // Animación scroll tarjetas
+  // =========================
+  const tarjetas = document.querySelectorAll('.servicio-card');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  tarjetas.forEach(tarjeta => observer.observe(tarjeta));
+
+  // =========================
+  // Modales
+  // =========================
+  const modalBtns = document.querySelectorAll('.servicio-btn[data-modal]');
+  const body = document.body;
+
+  modalBtns.forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const modalId = btn.getAttribute('data-modal');
+      const modal = document.getElementById(modalId);
+      if(modal) {
+        modal.classList.add('active');
+        body.style.overflow = 'hidden'; // evita scroll cuando modal abierto
+      }
+    });
+  });
+
+  // Cerrar modal al hacer click en la X
+  const closeBtns = document.querySelectorAll('.modal .close');
+  closeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modal = btn.closest('.modal');
+      modal.classList.remove('active');
+      body.style.overflow = 'auto';
+    });
+  });
+
+  // Cerrar modal al hacer click fuera del contenido
+  const modals = document.querySelectorAll('.modal');
+  modals.forEach(modal => {
+    modal.addEventListener('click', e => {
+      if(e.target === modal) {
+        modal.classList.remove('active');
+        body.style.overflow = 'auto';
+      }
+    });
+  });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Seleccionamos todas las tarjetas de ubicación y planes
+  const tarjetas = document.querySelectorAll('.ubicacion-card, .plan-card');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // se activa solo una vez
+      }
+    });
+  }, { threshold: 0.3 });
+
+  tarjetas.forEach(tarjeta => observer.observe(tarjeta));
+});
+
+
+
+</script>
+
+
+<script>
+  window.addEventListener("load", function () {
+    const preloader = document.getElementById("preloader");
+    preloader.style.opacity = "0";
+    preloader.style.pointerEvents = "none";
+
+    setTimeout(() => {
+      preloader.style.display = "none";
+    }, 500);
+  });
+</script>
+
+<script>
+  const sectionsToAnimate = [
+    '.hero',
+    '.base-planes',
+    '.experiencia',
+    '.servicios',
+    '.sobre-nosotros',
+    '#contacto',
+    '#galeria'
+  ];
+
+  const observerOptions = {
+    threshold: 0.2, // óptimo para móvil y desktop
+    rootMargin: '0px 0px -60px 0px'
+  };
+
+  const sectionObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target); // se anima una sola vez
+      }
+    });
+  }, observerOptions);
+
+  sectionsToAnimate.forEach(selector => {
+    const section = document.querySelector(selector);
+    if (section) {
+      sectionObserver.observe(section);
+    }
+  });
+</script>
+
+
+<!-- MINI FOOTER -->
+<div style="display:block; background:#000; color:#fff; text-align:center; padding:0.8rem 1rem; font-size:0.9rem; font-weight:500; box-shadow:0 -3px 10px rgba(0,0,0,0.2);">
+  Desarrollado por <a href="https://ideokode-page.onrender.com/" target="_blank" style="color:#00BFFF; text-decoration:none; font-weight:700;">IDEOKODE</a>
+</div>
+
+
+</body>
+</html>
