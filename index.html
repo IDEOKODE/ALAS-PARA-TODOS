@@ -901,7 +901,6 @@
 
 
 
-
 /* =========================
    BASE & PLANES
 ========================= */
@@ -949,11 +948,12 @@
   display: grid;
   gap: 2.5rem;
   justify-items: center;
+  align-items: stretch; /* iguala altura de las tarjetas */
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .base-planes .grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -973,6 +973,7 @@
   overflow: hidden;
   position: relative;
   color: #1a1a1a;
+  height: 100%; /* fuerza altura igual en todas las tarjetas */
 }
 
 /* IMAGEN DESTACADA */
@@ -1016,6 +1017,11 @@
   margin-right: 0.5rem;
 }
 
+/* BOTONES AL FONDO */
+.plan-card .servicio-btn {
+  margin-top: auto; /* hace que todos los botones estén alineados al fondo */
+}
+
 /* ANIMACIÓN SCROLL */
 .ubicacion-card.visible,
 .plan-card.visible {
@@ -1025,9 +1031,9 @@
 }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
-  .base-planes h2 {
-    font-size: 2.2rem;
+@media (max-width: 1200px) {
+  .base-planes .grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 
   .ubicacion-card,
@@ -1040,7 +1046,6 @@
     height: 160px;
   }
 }
-
 
 
 
@@ -1388,8 +1393,8 @@
 
     <!-- BADGES -->
     <div class="hero-badges">
-      <div class="hero-badge">✈️ Aviación recreativa certificada</div>
-      <div class="hero-badge">🧑‍✈️ Pilotos profesionales</div>
+      <div class="hero-badge">✈️Aviación Deportiva & Recreativa Certificada.</div>
+      <div class="hero-badge">👨🏼‍✈️✈️Pilotos Profesionales.</div>
     </div>
 
     <h1>
@@ -1398,9 +1403,7 @@
     </h1>
 
     <p>
-      Vive un vuelo real en aeronaves ultralivianas certificadas,
-      acompañado por pilotos experimentados y bajo estrictos
-      estándares de seguridad aeronáutica.
+      Vive un vuelo real en aeronaves ultralivianas , acompañado por Pilotos experimentados y bajo estrictos estándares de seguridad aérea (SMS)
     </p>
 
     <div class="hero-buttons">
@@ -1409,7 +1412,7 @@
     </div>
 
     <div class="hero-note">
-      ✔ Pilotos certificados · ✔ Vuelos reales · ✔ Seguridad garantizada
+      ✔ Pilotos certificados. · ✔ Vuelos reales. · ✔ Seguridad Aérea Garantizada.
     </div>
 
   </div>
@@ -1426,7 +1429,7 @@
       <h2>La experiencia de volar</h2>
 
       <p class="experiencia-lead">
-        Un primer acercamiento real a la aviación deportiva, diseñado para inspirar, educar y despertar la pasión por el cielo.
+        Un primer acercamiento real a la aviación Deportiva & Recreativa Certificada ,diseñado para inspirar ,educar y despertar la pasión por el cielo.
       </p>
 
       <div class="experiencia-claves">
@@ -1554,7 +1557,7 @@
         </div>
         <h3>Formación Aeronáutica</h3>
         <p>
-          Cursos de piloto ultraliviano, entrenamiento, habilitación y reentrenamiento bajo estándares RAC y OACI.
+          Cursos de piloto ultraliviano ,entrenamiento ,habilitación y reentrenamiento bajo estándares RAC y OACi.
         </p>
         <a href="#" class="servicio-btn" data-modal="modal2">Más información</a>
       </div>
@@ -1583,7 +1586,7 @@
             <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7l3-7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h3>Fomento Aero deportiva</h3>
+        <h3>Fomento Aéreo Deportivo & Recreativo.</h3>
         <p>
           Exposiciones aéreas, convenios educativos y programas de turismo aéreo responsable para la comunidad.
         </p>
@@ -1603,8 +1606,7 @@
     <img src="img/tarjeta1.jpeg" alt="Vuelos de inducción">
     <h3>Vuelos de Inducción</h3>
     <p>
-      Disfruta un primer acercamiento real a la aviación deportiva con vuelos de 15, 30, 45 y 60 minutos. 
-      Incluye paquetes familiares y experiencias personalizadas.  
+      Primer acercamiento a la Aviación Deportiva & Recreativa Certificada,con vuelos de 15 a 60 min,paquetes familiares y experiencias personalizadas.
       <br><strong>Puntos destacados:</strong> Mosaico de Cultivos, Río Cauca, Humedales cercanos.
     </p>
     <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20Vuelos%20de%20Inducción" target="_blank" class="servicio-btn">Agendar</a>
@@ -1617,8 +1619,8 @@
     <img src="img/tarjeta2.png" alt="Formación aeronáutica">
     <h3>Formación Aeronáutica</h3>
     <p>
-      Cursos de piloto ultraliviano, entrenamiento, habilitación y reentrenamiento bajo estándares RAC y OACI. 
-      <br><strong>Incluye:</strong> Teoría, prácticas y simulación de vuelo.
+      Cursos de piloto ultraliviano ,entrenamiento ,habilitación y reentrenamiento bajo estándares RAC y OACi.
+      <br><strong>Incluye:</strong> Teoría y Prácticas de vuelo.
     </p>
     <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20Formación%20Aeronáutica" target="_blank" class="servicio-btn">Agendar</a>
   </div>
@@ -1631,7 +1633,7 @@
     <h3>Programas Académicos</h3>
     <p>
       Talleres de CRM, SMS, Derecho Aeronáutico, Meteorología, Aerodinámica, Navegación y procedimientos operacionales. 
-      <br><strong>Objetivo:</strong> Formación integral del aviador deportivo con teoría y práctica.
+      <br><strong>Objetivo:</strong> Formación integral del Piloto Aviador Deportivo & Recreativo con Teoría y Práctica según normatividad vigente.
     </p>
     <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20Programas%20Académicos" target="_blank" class="servicio-btn">Agendar</a>
   </div>
@@ -1641,10 +1643,10 @@
   <div class="modal-content">
     <span class="close">&times;</span>
     <img src="img/tarjeta4.png" alt="Fomento Aero deportiva">
-    <h3>Fomento Aerodeportivo</h3>
+    <h3>Fomento Aéreo Deportivo & Recreativo.</h3>
     <p>
   Exposiciones aéreas, convenios educativos y programas de turismo aéreo responsable para la comunidad.  
-  <br><strong>Beneficios:</strong> Acceso a la aviación, participación en eventos y actividades educativas.
+  <br><strong>Beneficios:</strong> Acceso a la aviación ,participación en eventos y actividades culturales y educativas .
 </p>
     <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20Fomento%20Aero%20Deportiva" target="_blank" class="servicio-btn">Agendar</a>
   </div>
@@ -1668,10 +1670,10 @@
 
       <!-- Plan 1 -->
       <div class="plan-card p-6 bg-gray-800 rounded-xl visible">
-        <img src="img/plan1.jpeg" alt="Plan Corazón del Valle" class="rounded-xl mb-4">
+        <img src="img/valle_del_cauca.jpg" alt="Plan Corazón del Valle" class="rounded-xl mb-4">
         <h3>🌿 Corazón del Valle</h3>
         <ul class="icon-list">
-          <li><i class="fas fa-clock"></i> Duración: 30 - 45 min</li>
+          <li><i class="fas fa-clock"></i> Duración: Desde 30 min en adelante.</li>
           <li><i class="fas fa-user"></i> Ideal para principiantes o paseo rápido</li>
         </ul>
         <button class="servicio-btn mt-4" data-modal="modalPlan1">Más información</button>
@@ -1679,10 +1681,10 @@
 
       <!-- Plan 2 -->
       <div class="plan-card p-6 bg-gray-800 rounded-xl visible">
-        <img src="img/plan2.jpeg" alt="Plan Historias y Cúpulas" class="rounded-xl mb-4">
-        <h3>✨ Historias y Cúpulas</h3>
+        <img src="img/basilica_hacienda.png" alt="Plan Historias y Cúpulas" class="rounded-xl mb-4">
+        <h3>✨ Ruta histórica</h3>
         <ul class="icon-list">
-          <li><i class="fas fa-clock"></i> Duración: 45 - 60 min</li>
+          <li><i class="fas fa-clock"></i> Duración: 45min en adelante.</li>
           <li><i class="fas fa-university"></i> Para amantes de historia y arquitectura</li>
         </ul>
         <button class="servicio-btn mt-4" data-modal="modalPlan2">Más información</button>
@@ -1690,13 +1692,25 @@
 
       <!-- Plan 3 -->
       <div class="plan-card p-6 bg-gray-800 rounded-xl visible">
-        <img src="img/plan3.jpeg" alt="Plan Premium Cumbres y Agua" class="rounded-xl mb-4">
-        <h3>⛰️ Premium – Cumbres y Agua</h3>
+        <img src="img/mix_r_l_v.png" alt="Plan Premium Cumbres y Agua" class="rounded-xl mb-4">
+        <h3>⛰️ Legado del Valle</h3>
         <ul class="icon-list">
-          <li><i class="fas fa-clock"></i> Duración: 90 min o más</li>
-          <li><i class="fas fa-star"></i> Para entusiastas y celebraciones especiales</li>
+          <li><i class="fas fa-clock"></i> Duración: 60 min o más</li>
+          <li><i class="fas fa-star"></i> Para celebraciones especiales</li>
         </ul>
         <button class="servicio-btn mt-4" data-modal="modalPlan3">Más información</button>
+      </div>
+
+
+      <!-- Plan 3 -->
+      <div class="plan-card p-6 bg-gray-800 rounded-xl visible">
+        <img src="img/plan3.jpeg" alt="Plan Personalizado" class="rounded-xl mb-4">
+        <h3>🤩 Personalizado</h3>
+        <ul class="icon-list">
+          <li><i class="fas fa-clock"></i> Duración: Desde 15 minutos.</li>
+          <li><i class="fas fa-star"></i> Para entusiastas.</li>
+        </ul>
+        <button class="servicio-btn mt-4" data-modal="modalPlan4">Más información</button>
       </div>
 
     </div>
@@ -1712,9 +1726,23 @@
     <img src="img/plan1.jpeg" alt="Plan Corazón del Valle" class="rounded-xl mb-4">
     <h3>🌿 Corazón del Valle</h3>
     <p>
-      Vuelo panorámico de 30 a 45 minutos, ideal para principiantes o quienes buscan un paseo rápido.  
+      Vuelo panorámico desde 30 minutos en adelante, ideal para principiantes o quienes buscan un paseo rápido.  
       <br><strong>Puntos clave:</strong> Mosaico de cultivos, Río Cauca, humedales locales.
     </p>
+
+    <h3>✈️ Planes de Vuelo por Tiempo</h3>
+
+    <p>
+      Nuestras experiencias están organizadas por módulos de tiempo, permitiéndote elegir el plan que mejor se adapte a tu disponibilidad y nivel de experiencia.
+    </p>
+
+    <ul style="margin-top:1rem; line-height:1.8;">
+      <li><strong>Alpha – </strong> 15 minutos.
+      <li><strong>Bravo – </strong> 30 minutos.
+      <li><strong>Charlie – </strong> 45 a 60 minutos.
+      <li><strong>Delta – </strong> Desde 60 minutos.
+    </ul>
+
     <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20el%20Plan%20Corazón%20del%20Valle" target="_blank" class="servicio-btn">Agendar</a>
   </div>
 </div>
@@ -1723,11 +1751,24 @@
   <div class="modal-content">
     <span class="close">&times;</span>
     <img src="img/plan2.jpeg" alt="Plan Historias y Cúpulas" class="rounded-xl mb-4">
-    <h3>✨ Historias y Cúpulas</h3>
+    <h3>✨ Ruta Histórica</h3>
     <p>
-      Vuelo cultural de 45 a 60 minutos, pensado para quienes desean combinar vuelo con apreciación histórica y arquitectónica.  
+      Vuelo cultural desde 45 minutos en adelante, pensado para quienes desean combinar vuelo con apreciación histórica y arquitectónica.  
       <br><strong>Puntos clave:</strong> Basílica de Buga, Hacienda El Paraíso, ciudades del centro del Valle.
     </p>
+
+    <h3>✈️ Planes de Vuelo por Tiempo</h3>
+
+    <p>
+      Nuestras experiencias están organizadas por módulos de tiempo, permitiéndote elegir el plan que mejor se adapte a tu disponibilidad y nivel de experiencia.
+    </p>
+
+    <ul style="margin-top:1rem; line-height:1.8;">
+      <li><strong>Alpha – </strong> 15 minutos.
+      <li><strong>Bravo – </strong> 30 minutos.
+      <li><strong>Charlie – </strong> 45 a 60 minutos.
+      <li><strong>Delta – </strong> Desde 60 minutos.
+    </ul>
     <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20el%20Plan%20Historias%20y%20Cúpulas" target="_blank" class="servicio-btn">Agendar</a>
   </div>
 </div>
@@ -1741,10 +1782,50 @@
       Vuelo extendido de 90 minutos o más, para entusiastas o celebraciones especiales, ofreciendo vistas completas del Valle y sus contrastes geográficos.  
       <br><strong>Puntos clave:</strong> Cordillera Central, embalse Lago Calima, paisajes impactantes.
     </p>
+
+    <h3>✈️ Planes de Vuelo por Tiempo</h3>
+
+    <p>
+      Nuestras experiencias están organizadas por módulos de tiempo, permitiéndote elegir el plan que mejor se adapte a tu disponibilidad y nivel de experiencia.
+    </p>
+
+    <ul style="margin-top:1rem; line-height:1.8;">
+      <li><strong>Alpha – </strong> 15 minutos.
+      <li><strong>Bravo – </strong> 30 minutos.
+      <li><strong>Charlie – </strong> 45 a 60 minutos.
+      <li><strong>Delta – </strong> Desde 60 minutos.
+    </ul>
     <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20el%20Plan%20Premium%20Cumbres%20y%20Agua" target="_blank" class="servicio-btn">Agendar</a>
   </div>
 </div>
 
+
+<div id="modalPlan4" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img src="img/plan3.jpeg" alt="Plan Premium Cumbres y Agua" class="rounded-xl mb-4">
+    <h3>🤩 Personalizado</h3>
+    <p>
+  Vuelo completamente personalizado según tus preferencias, con duración, ruta y enfoque adaptados a la experiencia que deseas vivir. Ideal para celebraciones, regalos especiales o entusiastas de la aviación que buscan algo único.
+  <br><strong>Puntos clave:</strong> Ruta a elección, vistas panorámicas del Valle, experiencia exclusiva y flexible.
+</p>
+
+<h3>✈️ Planes de Vuelo por Tiempo</h3>
+
+    <p>
+      Nuestras experiencias están organizadas por módulos de tiempo, permitiéndote elegir el plan que mejor se adapte a tu disponibilidad y nivel de experiencia.
+    </p>
+
+    <ul style="margin-top:1rem; line-height:1.8;">
+      <li><strong>Alpha – </strong> 15 minutos.
+      <li><strong>Bravo – </strong> 30 minutos.
+      <li><strong>Charlie – </strong> 45 a 60 minutos.
+      <li><strong>Delta – </strong> Desde 60 minutos.
+    </ul>
+
+    <a href="https://wa.me/57310656366?text=Hola,%20quiero%20agendar%20el%20Plan%20Premium%20Cumbres%20y%20Agua" target="_blank" class="servicio-btn">Agendar</a>
+  </div>
+</div>
 
 <section class="sobre-nosotros" id="sobre-nosotros">
   <div class="sobre-nosotros-container">
