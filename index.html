@@ -2394,16 +2394,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <script>
-  window.addEventListener("load", function () {
+  document.addEventListener("DOMContentLoaded", () => {
     const preloader = document.getElementById("preloader");
-    preloader.style.opacity = "0";
-    preloader.style.pointerEvents = "none";
+    const hero = document.querySelector(".hero");
 
-    setTimeout(() => {
-      preloader.style.display = "none";
-    }, 500);
+    if (!hero) return;
+
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        preloader.style.opacity = "0";
+        preloader.style.pointerEvents = "none";
+
+        setTimeout(() => {
+          preloader.style.display = "none";
+        }, 400);
+
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(hero);
   });
 </script>
+
 
 <script>
   const sectionsToAnimate = [
