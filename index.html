@@ -907,7 +907,7 @@
 .base-planes {
   padding: 6.5rem 1rem;
   background: linear-gradient(180deg, #ff7d00 0%, #e6e6e6 100%);
-  color: #1a1a1a; /* texto oscuro para contraste */
+  color: #1a1a1a;
 }
 
 .base-planes .container {
@@ -947,107 +947,82 @@
 .base-planes .grid {
   display: grid;
   gap: 2.5rem;
-  justify-items: center;
-  align-items: stretch; /* iguala altura de las tarjetas */
+  justify-items: stretch;
+  align-items: stretch; /* tarjetas igual altura */
 }
 
 @media (min-width: 1200px) {
   .base-planes .grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* 4 en línea */
   }
 }
 
-/* TARJETAS UBICACIÓN & PLANES */
-.ubicacion-card,
+/* TARJETAS */
 .plan-card {
-  background: #ffffff; /* tarjetas claras */
+  background: #ffffff;
   border-radius: 24px;
   padding: 2rem 1.5rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  text-align: left;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
-  opacity: 0;
-  transform: translateY(30px);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  position: relative;
+  height: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   color: #1a1a1a;
-  height: 100%; /* fuerza altura igual en todas las tarjetas */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* IMAGEN DESTACADA */
-.ubicacion-card img,
+/* Contenedor del contenido de la tarjeta */
+.plan-card .contenido-tarjeta {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* ocupa todo el espacio disponible */
+}
+
+/* Imagen */
 .plan-card img {
   width: 100%;
   height: 180px;
   object-fit: cover;
   border-radius: 20px 20px 0 0;
   margin-bottom: 1rem;
-  transition: transform 0.4s ease;
 }
 
-/* HOVER EFECTO */
-.ubicacion-card:hover,
+/* Título */
+.plan-card h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+}
+
+/* Lista de íconos */
+.plan-card ul {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--naranja);
+  margin-bottom: 1rem;
+  margin-top: auto; /* fuerza que la lista suba para alinear en todas */
+}
+
+/* Botón */
+.plan-card .servicio-btn {
+  margin-top: 1rem; /* siempre abajo */
+}
+
+/* Hover */
 .plan-card:hover {
   transform: translateY(-6px) scale(1.05);
   box-shadow: 0 20px 50px rgba(0,0,0,0.25);
 }
 
-/* TÍTULOS DE TARJETA */
-.ubicacion-card h3,
-.plan-card h3 {
-  font-size: 1.4rem;
-  font-weight: 800;
-  margin-bottom: 0.8rem;
-  color: #1a1a1a;
-}
-
-/* TEXTO TARJETA */
-.ubicacion-card ul,
-.plan-card p {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #444;
-}
-
-/* ICONOS */
-.icon-list li i {
-  color: var(--naranja);
-  margin-right: 0.5rem;
-}
-
-/* BOTONES AL FONDO */
-.plan-card .servicio-btn {
-  margin-top: auto; /* hace que todos los botones estén alineados al fondo */
-}
-
-/* ANIMACIÓN SCROLL */
-.ubicacion-card.visible,
-.plan-card.visible {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-/* RESPONSIVE */
+/* Responsive */
 @media (max-width: 1200px) {
   .base-planes .grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 
-  .ubicacion-card,
-  .plan-card {
-    padding: 1.8rem 1rem;
-  }
-
-  .ubicacion-card img,
   .plan-card img {
     height: 160px;
   }
 }
-
-
 
 
 /* =========================
